@@ -1,0 +1,187 @@
+# MediChat AI - Setup Instructions
+
+## Prerequisites
+- Node.js (v16.0.0 or higher)
+- npm (v8.0.0 or higher) or Yarn (v1.22.0 or higher)
+- Git
+
+## Setup Instructions
+
+### 1. Clone the repository
+```bash
+git clone <repository-url>
+cd SIH
+```
+
+### 2. Install Node.js dependencies
+```bash
+# Using npm
+npm install
+
+# OR using Yarn (if you prefer)
+yarn install
+```
+
+### 3. Environment Variables
+Create a `.env` file in the root directory if needed (check with the project maintainer if any environment variables are required):
+```bash
+# Example .env file
+VITE_APP_API_URL=your_api_url_here
+```
+
+### 4. Start the development server
+```bash
+# Using npm
+npm run dev
+
+# OR using Yarn
+yarn dev
+```
+
+The application should now be running on `http://localhost:5173` (default Vite port).
+
+### 5. Build for production (optional)
+```bash
+# Using npm
+npm run build
+
+# OR using Yarn
+yarn build
+```
+
+### 6. Preview production build (optional)
+```bash
+# Using npm
+npm run preview
+
+# OR using Yarn
+yarn preview
+```
+
+## Available Scripts
+- `dev`: Start the development server
+- `build`: Build the application for production
+- `preview`: Preview the production build locally
+- `lint`: Run ESLint to check for code quality issues
+
+## Dependencies
+- React 18.2.0
+- TypeScript
+- Tailwind CSS 3.4.17
+- React Icons 5.5.0
+- React Markdown 10.1.0
+- React Syntax Highlighter 15.6.6
+- Vite 5.0.0
+
+## Development Dependencies
+- @types/node
+- @types/react
+- @types/react-dom
+- @vitejs/plugin-react
+- TypeScript 5.0.2
+- ESLint 8.45.0
+- PostCSS 8.5.6
+- Autoprefixer 10.4.21
+- Tailwind CSS 3.4.17
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+1. **Dependency Installation Fails**
+   - Clear npm cache: `npm cache clean --force`
+   - Delete `node_modules` and `package-lock.json`
+   - Run `npm install` again
+
+2. **ESLint Errors**
+   - Run `npm run lint` to identify issues
+   - Use `npm run lint -- --fix` to automatically fix fixable issues
+
+3. **TypeScript Errors**
+   - Ensure all TypeScript dependencies are installed
+   - Run `npx tsc --noEmit` to check for type errors
+
+4. **Development Server Not Starting**
+   - Check if port 5173 is already in use
+   - Try running `npx kill-port 5173` to free the port
+   - Restart the development server
+
+## Browser Compatibility
+
+### Supported Browsers
+- Google Chrome (latest 3 versions)
+- Mozilla Firefox (latest 3 versions)
+- Microsoft Edge (latest 3 versions)
+- Safari (latest 3 versions)
+- Mobile Safari (iOS 13+)
+- Chrome for Android (latest 3 versions)
+
+### Polyfills
+This project includes core-js polyfills for:
+- ES6+ features
+- Object/Array methods
+- Promises
+- Fetch API
+- Intersection Observer
+
+## Deployment Instructions
+
+### Vercel (Recommended)
+1. Push your code to a Git repository
+2. Import the repository on Vercel
+3. Set up environment variables in Vercel dashboard
+4. Deploy!
+
+### Netlify
+1. Push your code to a Git repository
+2. Create a new site from Git on Netlify
+3. Set build command: `npm run build`
+4. Set publish directory: `dist`
+5. Add environment variables in Netlify dashboard
+6. Deploy site
+
+### Static Hosting
+1. Run `npm run build`
+2. Deploy the `dist` folder to any static hosting service
+   - AWS S3
+   - GitHub Pages
+   - Firebase Hosting
+   - Nginx/Apache server
+
+## Testing
+
+### Running Tests
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run coverage report
+npm test -- --coverage
+```
+
+### Test Structure
+- Unit tests: `*.test.ts` or `*.test.tsx`
+- Component tests: `__tests__` directory
+- Mock data: `__mocks__` directory
+
+### Testing Libraries
+- Jest (test runner)
+- React Testing Library (component testing)
+- @testing-library/user-event (user interaction testing)
+- @testing-library/jest-dom (DOM testing utilities)
+
+### Writing Tests
+1. Test components in isolation
+2. Mock external dependencies
+3. Test user interactions
+4. Verify component rendering
+5. Test edge cases
+
+### Continuous Integration
+- GitHub Actions configuration included in `.github/workflows`
+- Runs tests on push to main branch
+- Runs tests on pull requests
+- Checks code formatting and linting
