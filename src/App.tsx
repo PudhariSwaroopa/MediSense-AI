@@ -6,7 +6,7 @@ import { Message } from './types';
 import axios from 'axios';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const [globalSearchQuery, setGlobalSearchQuery] = useState('');
   const [globalSearchResults, setGlobalSearchResults] = useState<
@@ -34,9 +34,17 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSidebarOpen(window.innerWidth >= 768);
+      // Only auto-show sidebar on larger screens if it was previously open
+      if (window.innerWidth >= 1024) {
+        setIsSidebarOpen(prev => prev);
+      } else {
+        setIsSidebarOpen(false);
+      }
     };
+    
+    // Initial check
     handleResize();
+    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);

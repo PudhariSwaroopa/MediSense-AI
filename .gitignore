@@ -59,6 +59,7 @@ node_modules
 
 # dotenv environment variables file
 .env
+sih-backend/.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .parcel-cache

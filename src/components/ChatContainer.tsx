@@ -104,7 +104,7 @@ export default function ChatContainer({
           >
             <FiMenu className="w-5 h-5 text-stone-600 dark:text-gray-400" />
           </button>
-          <h1 className="text-lg font-semibold text-stone-800 dark:text-gray-100">MediChat.ai</h1>
+          <h1 className="text-lg font-semibold text-stone-800 dark:text-gray-100">MediSenseAI</h1>
         </div>
         
         <div className="flex-1 max-w-2xl mx-4">
