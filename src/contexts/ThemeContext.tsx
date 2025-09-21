@@ -11,16 +11,20 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('dark');
-  const [isDark, setIsDark] = useState(true);
+  // Load saved theme from localStorage or default to system
+  const [theme, setThemeState] = useState<Theme>(() => {
+    const saved = localStorage.getItem('theme') as Theme | null;
+    return saved || 'system';
+  });
+  const [isDark, setIsDark] = useState<boolean>(false);
 
   // Apply theme changes
   useEffect(() => {
-    const root = window.document.documentElement;
-    
-    // Remove all theme classes
+    const root = document.documentElement;
+
+    // Remove existing classes
     root.classList.remove('light', 'dark');
-    
+
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       root.classList.add(systemTheme);
@@ -31,23 +35,26 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [theme]);
 
-  // Listen for system theme changes
+  // Listen for system theme changes if theme = system
   useEffect(() => {
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = () => {
-        setIsDark(mediaQuery.matches);
-        document.documentElement.classList.toggle('dark', mediaQuery.matches);
-      };
-      
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    }
+    if (theme !== 'system') return;
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      const root = document.documentElement;
+      root.classList.remove('light', 'dark');
+      const systemTheme = mediaQuery.matches ? 'dark' : 'light';
+      root.classList.add(systemTheme);
+      setIsDark(systemTheme === 'dark');
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
+  // Update theme and persist
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    // Save to localStorage for persistence
     localStorage.setItem('theme', newTheme);
   };
 
@@ -60,7 +67,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
 export function useTheme() {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;

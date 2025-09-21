@@ -369,7 +369,7 @@ export default function ChatInput({ onSendMessage, isDisabled = false }: ChatInp
       </div>
       <div className="max-w-3xl mx-auto mt-2">
         <p className="text-xs text-stone-500 dark:text-gray-500 text-center">
-          MediChat may display inaccurate info, including about people, so double-check its responses.
+          MediSenseAI may display inaccurate info, including about people, so double-check its responses.
         </p>
       </div>
     </div>

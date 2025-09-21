@@ -1,19 +1,18 @@
-# Gemini-Style Chat Interface
+# MediChat AI - Health Chatbot
 
-A modern, responsive chat interface inspired by Google Gemini, built with React, TypeScript, and Tailwind CSS.
+A modern, responsive health-focused chat interface inspired by Google Gemini, built with React, TypeScript, Tailwind CSS, and Node.js backend using Google Gemini API.
 
 ## Features
 
-- 🎨 Clean, modern UI with dark theme
+- 🎨 Clean, modern UI with dark/light theme
 - 📱 Fully responsive design for mobile, tablet, and desktop
-- 💬 Real-time messaging with typing indicators
+- 💬 Real-time messaging with AI responses
 - 📜 Chat history with search functionality
-- 📎 File and image attachment support
 - 🌓 Light/Dark mode toggle
 - ✨ Smooth animations and transitions
-- 📝 Markdown support for messages
+- 📝 Multilingual support (English, Hindi, Telugu, Tamil, etc.)
+- 🚨 Emergency alerts for critical symptoms (chest pain, stroke, etc.)
 - 📋 Copy message to clipboard
-- 🔄 Infinite scroll for chat history
 
 ## Getting Started
 
@@ -21,80 +20,114 @@ A modern, responsive chat interface inspired by Google Gemini, built with React,
 
 - Node.js (v16 or later)
 - npm or yarn
+- Git
+- Google Cloud API Key (Gemini 2.0 Flash Lite)
 
-### Installation
+### Project Structure
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/gemini-chat.git
-   cd gemini-chat
-   ```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn
-   ```
 
-3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+SIH/
+├── sih-backend/ # Backend server
+│ ├── server.js # Express server
+│ ├── .env # Environment variables (API key, PORT)
+│ ├── package.json
+│ └── node_modules/
+├── sih/ # Frontend React app
+│ ├── src/
+│ │ ├── components/ # UI components
+│ │ ├── contexts/ # Theme context
+│ │ ├── App.tsx
+│ │ ├── main.tsx
+│ │ └── types.ts
+│ ├── package.json
+│ └── node_modules/
+├── README.md
+└── package-lock.json
 
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Building for Production
 
-To create a production build:
+## Setup Instructions
 
+### 1. Clone the repository
 ```bash
-npm run build
-# or
-yarn build
-```
+git clone <repository-url>
+cd SIH
 
-The build artifacts will be stored in the `dist/` directory.
+##Install and Run Backend Deoendencies
+cd sih-backend
+npm install express cors dotenv axios
+npm install --save-dev nodemon
+cd ../sih-backend
+npx nodemon server.js
 
-## Project Structure
 
-```
-gemini-chat/
-├── public/              # Static files
-├── src/
-│   ├── components/      # Reusable UI components
-│   ├── types/           # TypeScript type definitions
-│   ├── App.tsx          # Main application component
-│   ├── main.tsx         # Application entry point
-│   └── index.css        # Global styles
-├── index.html           # HTML template
-├── package.json         # Project dependencies and scripts
-├── tailwind.config.js   # Tailwind CSS configuration
-└── tsconfig.json        # TypeScript configuration
-```
+##Install and Run Frontend Deoendencies
+cd ../sih
+npm install
+npm install axios
+cd ../sih
+npm run dev
 
-## Customization
+##Test Prompts
+English: What are the symptoms of COVID-19?
+Hindi: COVID-19 के लक्षण क्या हैं?
+Telugu: కొవిడ్ లక్షణాలు ఏమిటి?
+Tamil: கோவிட் அறிகுறிகள் என்ன?
+Emergency: I have chest pain and shortness of breath.
 
-### Themes
 
-You can customize the color scheme by modifying the `tailwind.config.js` file. The primary color is set to green by default.
+##Available Scripts (Frontend)
 
-### Environment Variables
+npm run dev → Start development server
 
-Create a `.env` file in the root directory to set environment variables:
+npm run build → Build for production
 
-```env
-VITE_API_BASE_URL=your_api_url_here
-```
+npm run preview → Preview production build
 
-## License
+npm run lint → Run ESLint
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+##Troubleshooting
 
-## Acknowledgments
+Dependency installation fails
 
-- Inspired by Google Gemini's chat interface
-- Built with [Vite](https://vitejs.dev/), [React](https://reactjs.org/), and [Tailwind CSS](https://tailwindcss.com/)
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
+Clear npm cache: npm cache clean --force
+
+Delete node_modules and package-lock.json
+
+Run npm install again
+
+Backend server not starting
+
+Ensure .env exists with valid API key
+
+Check port 5000 is free
+
+Frontend server not starting
+
+Ensure port 5173 is free
+
+Run npm install in frontend folder
+
+Chatbot not responding
+
+Make sure backend server is running
+
+Verify Gemini API key is valid and quota not exceeded
+
+
+##License
+
+This project is licensed under the MIT License - see the LICENSE
+ file for details.
+
+##Acknowledgments
+
+Inspired by Google Gemini's chat interface
+
+Built with Vite
+, React
+, Tailwind CSS
+
+Backend using Express
+ and Google Gemini API
